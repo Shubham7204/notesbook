@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -56,6 +56,10 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        body: ['YourCustomFontFamily', 'sans-serif'], // Add your custom font family here
+        heading: ['YourCustomHeadingFontFamily', 'sans-serif'], // Add your custom heading font family here
       },
       keyframes: {
         "accordion-down": {
