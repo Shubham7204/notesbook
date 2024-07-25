@@ -22,14 +22,14 @@ const AddNote = () => {
     }
 
     return (
-        <Card className=" max-w-4xl mx-auto shadow-lg">
-            <CardHeader className="bg-primary text-white">
-                <CardTitle className="text-3xl font-bold">Add a Note</CardTitle>
+        <Card className="shadow-md rounded-lg">
+            <CardHeader className="bg-primary rounded-t-lg">
+                <CardTitle className="text-2xl font-bold">Add a Note</CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-                <form onSubmit={handleClick} className="space-y-6">
-                    <div className="space-y-2">
-                        <Label htmlFor="title" className="text-lg font-semibold">Title</Label>
+            <CardContent className="p-4">
+                <form onSubmit={handleClick} className="space-y-4">
+                    <div className="space-y-1">
+                        <Label htmlFor="title" className="text-md font-semibold">Title</Label>
                         <Input 
                             id="title" 
                             name="title"
@@ -38,11 +38,11 @@ const AddNote = () => {
                             minLength={5}
                             required
                             placeholder="Enter note title"
-                            className="w-full p-3 text-lg"
+                            className="w-full p-2 text-md"
                         />
                     </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="description" className="text-lg font-semibold">Description</Label>
+                    <div className="space-y-1">
+                        <Label htmlFor="description" className="text-md font-semibold">Description</Label>
                         <Textarea 
                             id="description" 
                             name="description"
@@ -51,23 +51,23 @@ const AddNote = () => {
                             minLength={5}
                             required
                             placeholder="Enter note description"
-                            rows={6}
-                            className="w-full p-3 text-lg"
+                            rows={4}
+                            className="w-full p-2 text-md"
                         />
                     </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="tag" className="text-lg font-semibold">Tag</Label>
+                    <div className="space-y-1">
+                        <Label htmlFor="tag" className="text-md font-semibold">Tag</Label>
                         <Input 
                             id="tag" 
                             name="tag"
                             value={note.tag}
                             onChange={onChange}
                             placeholder="Enter note tag (optional)"
-                            className="w-full p-3 text-lg"
+                            className="w-full p-2 text-md"
                         />
                     </div>
                     <Button 
-                        className="w-full text-lg py-3"
+                        className="w-full text-md py-2"
                         type="submit" 
                         disabled={note.title.length < 5 || note.description.length < 5}
                     >

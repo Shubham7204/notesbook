@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
 import Noteitem from './Noteitem';
 import AddNote from './AddNotes';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,6 +13,8 @@ const Notes = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState(''); // State to hold search query
+    const [filteredNotes, setFilteredNotes] = useState([]);
 
     useEffect(() => {
         const fetchNotes = async () => {
@@ -26,7 +28,21 @@ const Notes = () => {
             }
         };
         fetchNotes();
-    }, []);
+    }, [getNotes]);
+
+    useEffect(() => {
+        // Filter notes based on search query
+        if (searchQuery.trim() === '') {
+            setFilteredNotes(notes);
+        } else {
+            setFilteredNotes(
+                notes.filter(note =>
+                    note.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    note.description.toLowerCase().includes(searchQuery.toLowerCase())
+                )
+            );
+        }
+    }, [searchQuery, notes]);
 
     const updateNote = (currentNote) => {
         setIsDialogOpen(true);
@@ -45,6 +61,15 @@ const Notes = () => {
     return (
         <>
             <AddNote />
+            <div className="mb-4">
+                <Input
+                    type="text"
+                    placeholder="Search notes..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full p-2"
+                />
+            </div>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogContent className="bg-white text-black">
                     <DialogHeader>
@@ -74,9 +99,9 @@ const Notes = () => {
                 <h2>Your Notes</h2>
                 {isLoading ? (
                     <p>Loading notes...</p>
-                ) : Array.isArray(notes) && notes.length > 0 ? (
+                ) : Array.isArray(filteredNotes) && filteredNotes.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {notes.map((note) => (
+                        {filteredNotes.map((note) => (
                             <Noteitem key={note._id} updateNote={updateNote} note={note} />
                         ))}
                     </div>
@@ -86,6 +111,6 @@ const Notes = () => {
             </div>
         </>
     );
-}
+};
 
 export default Notes;
