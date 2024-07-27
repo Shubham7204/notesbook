@@ -1,13 +1,11 @@
-// Home.jsx
-
-import React from 'react';
-
+import React from 'react'
+import NotesList from './NoteList';
 const About = () => {
     return (
-        <div>
-
-        </div>
+        <>
+            <NotesList/>
+        </>
     );
-};
+}
 
 export default About;

@@ -23,15 +23,15 @@ const AddNote = () => {
 
     return (
         <Card className="shadow-md rounded-lg">
-            <CardHeader className="bg-primary rounded-t-lg">
+            <CardHeader className="rounded-t-lg">
                 <CardTitle className="text-2xl font-bold">Add a Note</CardTitle>
             </CardHeader>
             <CardContent className="p-4">
                 <form onSubmit={handleClick} className="space-y-4">
                     <div className="space-y-1">
                         <Label htmlFor="title" className="text-md font-semibold">Title</Label>
-                        <Input 
-                            id="title" 
+                        <Input
+                            id="title"
                             name="title"
                             value={note.title}
                             onChange={onChange}
@@ -43,8 +43,8 @@ const AddNote = () => {
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="description" className="text-md font-semibold">Description</Label>
-                        <Textarea 
-                            id="description" 
+                        <Textarea
+                            id="description"
                             name="description"
                             value={note.description}
                             onChange={onChange}
@@ -57,8 +57,8 @@ const AddNote = () => {
                     </div>
                     <div className="space-y-1">
                         <Label htmlFor="tag" className="text-md font-semibold">Tag</Label>
-                        <Input 
-                            id="tag" 
+                        <Input
+                            id="tag"
                             name="tag"
                             value={note.tag}
                             onChange={onChange}
@@ -66,13 +66,16 @@ const AddNote = () => {
                             className="w-full p-2 text-md"
                         />
                     </div>
-                    <Button 
-                        className="w-full text-md py-2"
-                        type="submit" 
-                        disabled={note.title.length < 5 || note.description.length < 5}
-                    >
-                        Add Note
-                    </Button>
+                    <div className='flex justify-center'>
+                        <Button
+                            className="text-md py-2 w-36"
+                            type="submit"
+                            disabled={note.title.length < 5 || note.description.length < 5}
+                        >
+                            Add Note
+                        </Button>
+                    </div>
+
                 </form>
             </CardContent>
         </Card>

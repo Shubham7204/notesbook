@@ -61,7 +61,7 @@ const Notes = () => {
     return (
         <>
             <AddNote />
-            <div className="mb-4">
+            <div className="mb-4 mt-8">
                 <Input
                     type="text"
                     placeholder="Search notes..."
@@ -96,7 +96,6 @@ const Notes = () => {
                 </DialogContent>
             </Dialog>
             <div className="space-y-4 mt-4">
-                <h2>Your Notes</h2>
                 {isLoading ? (
                     <p>Loading notes...</p>
                 ) : Array.isArray(filteredNotes) && filteredNotes.length > 0 ? (
